@@ -1,2 +1,2 @@
 # Casuarina
-a permissions test-app to be deployed to AWS
+a permissions test-app to be deployed to AWS.
