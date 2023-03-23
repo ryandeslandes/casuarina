@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    {% load pwa %}
+
+    <head>
+        {% progressive_web_app_meta %}
+    </head>
+
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@ricky0123/vad-web@0.0.7/dist/bundle.min.js"></script>
+        <span id="output"></span><br>
+    </body>
+    <script>
+
+        document.getElementById("output").innerHTML = "listening - no voice detected"
+        async function main() {
+            const myvad = await vad.MicVAD.new({
+                onSpeechStart: () => {
+                    document.getElementById("output").innerHTML = "voice detected"
+                },
+                onSpeechEnd: (audio) => {
+                    document.getElementById("output").innerHTML = "listening - no voice detected"
+                }
+            })
+            myvad.start()
+        }
+        main()
+    </script>
+</html>
+
